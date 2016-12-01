@@ -1,8 +1,10 @@
-﻿#pragma once
+﻿#include <cmath>
+
+#pragma once
 
 namespace projGUI2 {
 
-#define MAXCHARDISP 21
+	#define MAXCHARDISP 21
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -249,6 +251,7 @@ namespace projGUI2 {
 			this->btnMaisMenos->TabIndex = 1;
 			this->btnMaisMenos->Text = L"±";
 			this->btnMaisMenos->UseVisualStyleBackColor = false;
+			this->btnMaisMenos->Click += gcnew System::EventHandler(this, &Form1::btnMaisMenos_Click);
 			// 
 			// btn3
 			// 
@@ -352,6 +355,7 @@ namespace projGUI2 {
 			this->btnRaiz->TabIndex = 1;
 			this->btnRaiz->Text = L"√";
 			this->btnRaiz->UseVisualStyleBackColor = false;
+			this->btnRaiz->Click += gcnew System::EventHandler(this, &Form1::btnRaiz_Click);
 			// 
 			// btnPot
 			// 
@@ -377,6 +381,7 @@ namespace projGUI2 {
 			this->btnFat->TabIndex = 1;
 			this->btnFat->Text = L"n!";
 			this->btnFat->UseVisualStyleBackColor = false;
+			this->btnFat->Click += gcnew System::EventHandler(this, &Form1::btnFat_Click);
 			// 
 			// btnApaga
 			// 
@@ -443,112 +448,148 @@ namespace projGUI2 {
 
 		}
 
+
 		bool separado;
 		double numero;
 		char op;
-
-
+		bool flagVirgula;
+		bool flagResultado;
+		
+		
 		void LimpaDisplay(){
-			separado = false;
+			flagResultado = false;
+			flagVirgula = false;
 			lblDisplay->Text = "0";
 		}
+
 		void LimpaTudo(){
 			LimpaDisplay();
 			op = '\0';
 			numero = 0.0;
 		}
 
+		double fatorial(double numero)
+		{
+			return (numero > 1)? numero*fatorial(numero-1) : 1;
+		}
+
 
 #pragma endregion
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-			if(lblDisplay->Text->Length < MAXCHARDISP){
-				if(lblDisplay-> Text == "0")
-					lblDisplay-> Text = "1";
-				else
-					lblDisplay-> Text  = lblDisplay -> Text + "1";
-		 }
+			 if(lblDisplay->Text->Length < MAXCHARDISP) {
+					 if(lblDisplay->Text != "0" && !flagResultado)
+						 lblDisplay->Text = lblDisplay->Text + "1";
+					 else {
+						 lblDisplay->Text = "1";
+						 flagResultado = false;
+					 }
+				 }	
 		}
 private: System::Void btn2_Click(System::Object^  sender, System::EventArgs^  e) {
-			 if(lblDisplay->Text->Length < MAXCHARDISP){
-				if(lblDisplay-> Text == "0")
-					lblDisplay-> Text = "2";
-				else
-					lblDisplay-> Text  = lblDisplay -> Text + "2";
-			}
+			 if(lblDisplay->Text->Length < MAXCHARDISP) {
+					 if(lblDisplay->Text != "0" && !flagResultado)
+						 lblDisplay->Text = lblDisplay->Text + "2";
+					 else {
+						 lblDisplay->Text = "2";
+						 flagResultado = false;
+					 }
+				 }	
 		 }
 private: System::Void Form1_Load(System::Object^  sender, System::EventArgs^  e) {
-			 separado = false;
+			 flagVirgula = false;
+			 flagResultado = false;
+			 numero = 0.0;
+			 op = '\0';
 		 }
 private: System::Void btn3_Click(System::Object^  sender, System::EventArgs^  e) {
-			  if(lblDisplay->Text->Length < MAXCHARDISP){
-				if(lblDisplay-> Text == "0")
-					lblDisplay-> Text = "3";
-				else
-					lblDisplay-> Text  = lblDisplay -> Text + "3";
-		
-			}
+			 if(lblDisplay->Text->Length < MAXCHARDISP) {
+					 if(lblDisplay->Text != "0" && !flagResultado)
+						 lblDisplay->Text = lblDisplay->Text + "3";
+					 else {
+						 lblDisplay->Text = "3";
+						 flagResultado = false;
+					 }
+				 }	
 		 }
 private: System::Void btn4_Click(System::Object^  sender, System::EventArgs^  e) {
-			 if(lblDisplay->Text->Length < MAXCHARDISP){
-				if(lblDisplay-> Text == "0")
-					lblDisplay-> Text = "4";
-				else
-					lblDisplay-> Text  = lblDisplay -> Text + "4";
-			}
+			 if(lblDisplay->Text->Length < MAXCHARDISP) {
+					 if(lblDisplay->Text != "0" && !flagResultado)
+						 lblDisplay->Text = lblDisplay->Text + "4";
+					 else {
+						 lblDisplay->Text = "4";
+						 flagResultado = false;
+					 }
+				 }	
 		 }
 
 
 private: System::Void btn5_Click(System::Object^  sender, System::EventArgs^  e) {
-			 			 if(lblDisplay->Text->Length < MAXCHARDISP){
-				if(lblDisplay-> Text == "0")
-					lblDisplay-> Text = "5";
-				else
-					lblDisplay-> Text  = lblDisplay -> Text + "5";
-			}
+			 if(lblDisplay->Text->Length < MAXCHARDISP) {
+					 if(lblDisplay->Text != "0" && !flagResultado)
+						 lblDisplay->Text = lblDisplay->Text + "5";
+					 else {
+						 lblDisplay->Text = "5";
+						 flagResultado = false;
+					 }
+				 }	
 		 }
 private: System::Void btn6_Click(System::Object^  sender, System::EventArgs^  e) {
-			 			 if(lblDisplay->Text->Length < MAXCHARDISP){
-				if(lblDisplay-> Text == "0")
-					lblDisplay-> Text = "6";
-				else
-					lblDisplay-> Text  = lblDisplay -> Text + "6";
-			}
+			 if(lblDisplay->Text->Length < MAXCHARDISP) {
+					 if(lblDisplay->Text != "0" && !flagResultado)
+						 lblDisplay->Text = lblDisplay->Text + "6";
+					 else {
+						 lblDisplay->Text = "6";
+						 flagResultado = false;
+					 }
+				 }	
 		 }
 private: System::Void btn7_Click(System::Object^  sender, System::EventArgs^  e) {
-			 			 if(lblDisplay->Text->Length < MAXCHARDISP){
-				if(lblDisplay-> Text == "0")
-					lblDisplay-> Text = "7";
-				else
-					lblDisplay-> Text  = lblDisplay -> Text + "7";
-			}
+			 if(lblDisplay->Text->Length < MAXCHARDISP) {
+					 if(lblDisplay->Text != "0" && !flagResultado)
+						 lblDisplay->Text = lblDisplay->Text + "7";
+					 else {
+						 lblDisplay->Text = "7";
+						 flagResultado = false;
+					 }
+				 }	
 		 }
 private: System::Void btn8_Click(System::Object^  sender, System::EventArgs^  e) {
-			 			 if(lblDisplay->Text->Length < MAXCHARDISP){
-				if(lblDisplay-> Text == "0")
-					lblDisplay-> Text = "8";
-				else
-					lblDisplay-> Text  = lblDisplay -> Text + "8";
-			}
+			 if(lblDisplay->Text->Length < MAXCHARDISP) {
+					 if(lblDisplay->Text != "0" && !flagResultado)
+						 lblDisplay->Text = lblDisplay->Text + "8";
+					 else {
+						 lblDisplay->Text = "8";
+						 flagResultado = false;
+					 }
+				 }	
 		 }
 private: System::Void btn9_Click(System::Object^  sender, System::EventArgs^  e) {
-			 			 if(lblDisplay->Text->Length < MAXCHARDISP){
-				if(lblDisplay-> Text == "0")
-					lblDisplay-> Text = "9";
-				else
-					lblDisplay-> Text  = lblDisplay -> Text + "9";
-			}
+			 if(lblDisplay->Text->Length < MAXCHARDISP) {
+					 if(lblDisplay->Text != "0" && !flagResultado)
+						 lblDisplay->Text = lblDisplay->Text + "9";
+					 else {
+						 lblDisplay->Text = "9";
+						 flagResultado = false;
+					 }
+				 }			
 		 }
 private: System::Void btn0_Click(System::Object^  sender, System::EventArgs^  e) {
-			 if(lblDisplay->Text->Length < MAXCHARDISP){
+			if(lblDisplay->Text->Length < MAXCHARDISP){
 				if(lblDisplay-> Text != "0")
 					lblDisplay-> Text  = lblDisplay -> Text + "0";
+				if(flagResultado) {
+						lblDisplay->Text = "0";
+						flagResultado = false;
+					}
 			}
 		 }
 private: System::Void btnvirgula_Click(System::Object^  sender, System::EventArgs^  e) {
-				 if(lblDisplay->Text->Length < MAXCHARDISP && !separado){
-					lblDisplay->Text = lblDisplay->Text + ",";
-					separado = true;
-			}
+			 if(lblDisplay->Text->Length < MAXCHARDISP-1) {
+				 if(!flagVirgula) {
+ 					lblDisplay->Text =  lblDisplay->Text + "," ;
+					flagVirgula = true;
+				 }
+			 }
 		 }
 private: System::Void btnMais_Click(System::Object^  sender, System::EventArgs^  e) {
 				numero = System::Convert::ToDouble(lblDisplay->Text);
@@ -561,8 +602,8 @@ private: System::Void btnMenos_Click(System::Object^  sender, System::EventArgs^
 				LimpaDisplay();
 		 }
 private: System::Void btnMult_Click(System::Object^  sender, System::EventArgs^  e) {
-			 double numero2 = numero;	
-			 numero = System::Convert::ToDouble(lblDisplay->Text);
+				double numero2 = numero;	
+				numero = System::Convert::ToDouble(lblDisplay->Text);
 				op = '*';
 				LimpaDisplay();
 		 }
@@ -574,15 +615,24 @@ private: System::Void btnDivisao_Click(System::Object^  sender, System::EventArg
 private: System::Void btnIgual_Click(System::Object^  sender, System::EventArgs^  e) {
 			 double numero2 = System::Convert::ToDouble(lblDisplay->Text);
 			 switch(op){
-			 case '+': lblDisplay->Text = System::Convert::ToString(numero + numero2);
+			 case '+': numero += numero2;
 				 break;
-			 case '-': lblDisplay->Text = System::Convert::ToString(numero - numero2);
+			 case '-': numero -= numero2;
 				 break;
-			 case '*': lblDisplay->Text = System::Convert::ToString(numero * numero2);
+			 case '*': numero *= numero2;
 				 break;
-			 case '/': lblDisplay->Text = System::Convert::ToString(numero / numero2);
+			 case '/': numero /= numero2;
+				 break;
+			 case '^': numero = Math::Pow(numero,numero2); 
 				 break;
 			 }
+			 if(numero > Math::Pow(10,MAXCHARDISP) - 1)
+				lblDisplay->Text = numero.ToString("e");
+			 else
+				 lblDisplay->Text = numero.ToString();
+			 if(lblDisplay->Text->Length > MAXCHARDISP)
+				lblDisplay->Text = lblDisplay->Text->Substring(0,MAXCHARDISP);
+			 flagResultado = true;
 			 
 		 }
 
@@ -591,8 +641,33 @@ private: System::Void btnApaga_Click(System::Object^  sender, System::EventArgs^
 			 LimpaTudo();
 		 }
 private: System::Void btnPot_Click(System::Object^  sender, System::EventArgs^  e) {
-
+			 numero = System::Convert::ToDouble(lblDisplay->Text);
+			 op = '^';
+			 LimpaDisplay();
 		 }
+private: System::Void btnFat_Click(System::Object^  sender, System::EventArgs^  e) {
+			 double numero2 = System::Convert::ToDouble(lblDisplay->Text);
+			 numero2 = fatorial(numero2);
+			 if(numero2 > Math::Pow(10,MAXCHARDISP) - 1)
+				lblDisplay->Text = numero2.ToString("e");
+			 else
+				 lblDisplay->Text = numero2.ToString();
+			 flagResultado = true;
+		 }
+private: System::Void btnRaiz_Click(System::Object^  sender, System::EventArgs^  e) {
+			 double numero = System::Convert::ToDouble(lblDisplay->Text);
+			 lblDisplay->Text = System::Convert::ToString(sqrt(numero));
+			 if(lblDisplay->Text->Length > MAXCHARDISP)
+				lblDisplay->Text = lblDisplay->Text->Substring(0,MAXCHARDISP);
+			 flagResultado = true;
+		 }
+private: System::Void btnMaisMenos_Click(System::Object^  sender, System::EventArgs^  e) {
+			 	 if(lblDisplay->Text != "0") {
+				 double numero = System::Convert::ToDouble(lblDisplay->Text);
+				 lblDisplay->Text = System::Convert::ToString(numero*(-1));
+			 }
+		 }
+
 };
 }
 
